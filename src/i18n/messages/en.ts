@@ -105,18 +105,47 @@ export const en = {
 
   // Cookie statement
   'app.cookies.title': 'Cookie statement',
-  'app.cookies.updated': 'Last updated: January 2026',
+  'app.cookies.updated': 'Last updated: August 2026',
   'app.cookies.intro':
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  'app.cookies.what.title': 'What are cookies?',
-  'app.cookies.what.body':
-    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
-  'app.cookies.use.title': 'How this site uses them',
-  'app.cookies.use.body':
-    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
-  'app.cookies.manage.title': 'Managing your preferences',
-  'app.cookies.manage.body':
-    'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
+    'In short: this website sets no cookies, shows no advertising, and does not track you across other websites. Nothing is stored on your device until you change a setting yourself.',
+
+  'app.cookies.none.title': 'Does this site use cookies?',
+  'app.cookies.none.body':
+    'No — none of its own, and none from third parties. Opening a page here stores nothing on your device.',
+
+  'app.cookies.stored.title': 'What this site stores on your device',
+  'app.cookies.stored.body':
+    'One item, and only once you switch language yourself. Your choice is kept in your browser so the site stays in that language next time you visit.',
+  'app.cookies.stored.nameLabel': 'Name',
+  'app.cookies.stored.nameValue': 'locale (browser local storage, not a cookie)',
+  'app.cookies.stored.purposeLabel': 'Purpose',
+  'app.cookies.stored.purposeValue': 'Remembers the language you picked',
+  'app.cookies.stored.contentLabel': 'Contents',
+  'app.cookies.stored.contentValue': 'Either "en" or "nl"',
+  'app.cookies.stored.retentionLabel': 'Kept until',
+  'app.cookies.stored.retentionValue': 'You clear this site’s data in your browser',
+  'app.cookies.stored.sentLabel': 'Sent to a server?',
+  'app.cookies.stored.sentValue': 'No, it stays in your browser',
+
+  'app.cookies.analytics.title': 'Visitor statistics',
+  'app.cookies.analytics.body':
+    'Visits are counted with Vercel Web Analytics, which works without cookies and stores nothing on your device. It records aggregated details such as the page viewed, the site you arrived from, approximate location (country and region), browser, and device type. Returning visits are recognised for at most 24 hours through a value derived from the request itself, which is not kept afterwards. These statistics cannot identify you and are not used for advertising or profiling.',
+
+  'app.cookies.consent.title': 'Why there is no cookie banner',
+  'app.cookies.consent.body':
+    'European and Dutch rules require permission before information is stored on or read from your device, unless it is strictly necessary for something you asked for yourself. The language preference is saved only because you chose it, and the visitor statistics store nothing on your device at all. Neither needs your permission, so a consent banner would ask you to agree to nothing.',
+
+  'app.cookies.control.title': 'Your choices',
+  'app.cookies.control.body':
+    'You can remove the saved language preference at any time by clearing this site’s data in your browser settings. The site keeps working and simply returns to English. Blocking storage for this site entirely works too — only the remembered language is lost.',
+
+  'app.cookies.changes.title': 'If this changes',
+  'app.cookies.changes.body':
+    'Should this site ever start using cookies or tracking, this page will be updated first, and permission will be requested wherever the law requires it.',
+
+  'app.cookies.contact.title': 'Questions',
+  'app.cookies.contact.body':
+    'If anything here is unclear, or you want to know what is held about your visit, get in touch:',
 
   // Not found & error pages
   'app.notFound.title': 'Page not found',
