@@ -1,0 +1,20 @@
+packages:
+  - packages/*
+
+# Postinstall scripts only print a setup nudge; init already ran.
+allowBuilds:
+  '@astryxdesign/cli': false
+  '@astryxdesign/core': false
+
+# Single source of truth for dependencies shared between the app and
+# workspace packages, so they can't drift onto different versions.
+catalog:
+  '@astryxdesign/cli': ^0.2.0
+  '@astryxdesign/core': ^0.2.0
+  react: ^19.2.0
+  react-dom: ^19.2.0
+  typescript: ^6.0.2
+
+onlyBuiltDependencies:
+  - esbuild
+  - lightningcss

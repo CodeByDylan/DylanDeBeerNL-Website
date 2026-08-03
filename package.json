@@ -1,0 +1,53 @@
+{
+  "name": "dylandebeer-web",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.18.0",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "build:theme": "pnpm --filter @dylandebeer/theme-pastel build",
+    "dev": "pnpm run build:theme && pnpm run build:projects && vite dev --port 3000",
+    "generate-routes": "tsr generate",
+    "build": "pnpm run build:theme && pnpm run build:projects && vite build",
+    "preview": "vite preview",
+    "format": "biome format",
+    "lint": "biome lint",
+    "check": "biome check",
+    "build:projects": "node --experimental-strip-types scripts/build-projects.mjs",
+    "check:projects": "node --experimental-strip-types scripts/__checks__/verify-projects.mts && node --experimental-strip-types scripts/__checks__/verify-pipeline.mts"
+  },
+  "dependencies": {
+    "@astryxdesign/core": "catalog:",
+    "@dylandebeer/theme-pastel": "workspace:*",
+    "@heroicons/react": "^2.2.0",
+    "@t3-oss/env-core": "^0.13.10",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-devtools": "latest",
+    "@tanstack/react-form": "latest",
+    "@tanstack/react-router": "latest",
+    "@tanstack/react-router-devtools": "latest",
+    "@tanstack/react-start": "latest",
+    "@vercel/analytics": "^2.0.1",
+    "nitro": "3.0.260610-beta",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tailwindcss": "^4.1.18",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@astryxdesign/cli": "catalog:",
+    "@biomejs/biome": "2.4.5",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tanstack/devtools-vite": "latest",
+    "@tanstack/router-cli": "^1.132.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "smol-toml": "^1.7.1",
+    "typescript": "catalog:",
+    "vite": "^8.0.0"
+  }
+}
