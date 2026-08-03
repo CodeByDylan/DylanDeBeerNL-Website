@@ -8,3 +8,12 @@
 @import "@dylandebeer/theme-pastel/theme.css";
 @import "@astryxdesign/core/tailwind-theme.css";
 @import "tailwindcss/utilities.css" layer(utilities);
+
+@layer components {
+  :root {
+    /* Plate behind the black logo artwork. Mixed toward white so it stays light
+       in dark mode too — the artwork cannot invert. App-level property, not an
+       Astryx --color-* override. */
+    --brand-logo-plate: color-mix(in oklab, var(--color-accent) 22%, white);
+  }
+}

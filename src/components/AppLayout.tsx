@@ -1,19 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { useRouterState } from '@tanstack/react-router'
 import { AppShell, useAppShellMobile } from '@astryxdesign/core/AppShell'
+import { AspectRatio } from '@astryxdesign/core/AspectRatio'
 import { Banner } from '@astryxdesign/core/Banner'
 import { Icon } from '@astryxdesign/core/Icon'
 import { LinkProvider } from '@astryxdesign/core/Link'
-import { NavIcon } from '@astryxdesign/core/NavIcon'
 import { SideNav, SideNavItem, SideNavSection } from '@astryxdesign/core/SideNav'
 import { TopNav, TopNavHeading, TopNavItem } from '@astryxdesign/core/TopNav'
-import {
-  ArrowTurnDownRightIcon,
-  CodeBracketIcon,
-  CubeIcon,
-  HomeIcon,
-  UserIcon,
-} from '@heroicons/react/16/solid'
+import { ArrowTurnDownRightIcon, CubeIcon, HomeIcon, UserIcon } from '@heroicons/react/16/solid'
+import { LOGO_RATIO, LOGO_SRC } from '../data/brand'
 import { useTranslate } from '../i18n'
 import LanguageToggle from './LanguageToggle'
 import RouterLink from './RouterLink'
@@ -68,7 +63,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <TopNavHeading
                 heading={t('app.brand.name')}
                 subheading={t('app.brand.tagline')}
-                logo={<NavIcon icon={<Icon icon={CodeBracketIcon} size="sm" />} />}
+                logo={
+                  // alt="" — the adjacent heading already names the brand.
+                  <AspectRatio ratio={LOGO_RATIO} fit="contain" className="w-10">
+                    <img src={LOGO_SRC} alt="" />
+                  </AspectRatio>
+                }
               />
             }
             endContent={<LanguageToggle />}
