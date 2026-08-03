@@ -9,16 +9,11 @@ import { SideNav, SideNavItem, SideNavSection } from '@astryxdesign/core/SideNav
 import { TopNav, TopNavHeading, TopNavItem } from '@astryxdesign/core/TopNav'
 import { ArrowTurnDownRightIcon, CubeIcon, HomeIcon, UserIcon } from '@heroicons/react/16/solid'
 import { LOGO_RATIO, LOGO_SRC } from '../data/brand'
+import { FEATURED_PROJECTS } from '../data/projects'
 import { useTranslate } from '../i18n'
 import LanguageToggle from './LanguageToggle'
 import RouterLink from './RouterLink'
 import SiteFooter from './SiteFooter'
-
-// Proper nouns; not translated.
-const PROJECTS = [
-  { label: 'Loom', href: '/projects/Loom' },
-  { label: 'ResourcePackIdentifier', href: '/projects/ResourcePackIdentifier' },
-] as const
 
 /** Dismisses the mobile drawer after a client-side navigation. */
 function CloseMobileNavOnNavigate({ pathname }: { pathname: string }) {
@@ -102,13 +97,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               />
             </SideNavSection>
             <SideNavSection title={t('app.nav.projectsSection')}>
-              {PROJECTS.map((project) => (
+              {FEATURED_PROJECTS.map((project) => (
                 <SideNavItem
-                  key={project.href}
-                  label={project.label}
-                  href={project.href}
+                  key={project.slug}
+                  label={project.name}
+                  href={`/projects/${project.slug}`}
                   icon={ArrowTurnDownRightIcon}
-                  isSelected={pathname === project.href}
+                  isSelected={pathname === `/projects/${project.slug}`}
                 />
               ))}
             </SideNavSection>

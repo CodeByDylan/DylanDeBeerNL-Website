@@ -41,13 +41,7 @@ export const en = {
 
   // Latest project
   'app.latest.badge': 'Now building',
-  'app.latest.tagline': 'A generic subheading about the current focus.',
-  'app.latest.body1':
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-  'app.latest.body2':
-    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
   'app.latest.cta': 'View on GitHub',
-  'app.latest.imageAlt': 'Preview of the Loom project',
 
   // Q&A
   'app.qna.q1': 'What is this website built with?',
@@ -68,18 +62,26 @@ export const en = {
 
   // Highlighted projects
   'app.highlights.subtitle': 'A generic subheading introducing selected work.',
-  'app.highlights.cardHint': 'View details',
-  'app.project.loom.summary':
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  'app.project.rpi.summary':
-    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  'app.project.web.summary':
-    'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-  'app.projectDialog.tabOverview': 'Overview',
-  'app.projectDialog.tabStack': 'Tech stack',
-  'app.projectDialog.tabLinks': 'Links',
-  'app.projectDialog.stackIntro': 'Built with the following tools:',
-  'app.projectDialog.repo': 'GitHub repository',
+
+  // Projects
+  'app.projects.subtitle': 'Everything I build in the open.',
+  'app.projects.featured': 'Featured',
+  'app.projects.everything': 'All projects',
+  'app.project.archived': 'Archived',
+  'app.project.version': 'Latest version',
+  'app.project.languages': 'Languages',
+  'app.project.story': 'How this came to be',
+  'app.project.star': 'Highlights',
+  'app.project.situation': 'Situation',
+  'app.project.task': 'Task',
+  'app.project.action': 'Action',
+  'app.project.result': 'Result',
+  'app.project.relations': 'Related projects',
+  'app.project.uses': 'Uses',
+  'app.project.usedBy': 'Used by',
+  'app.project.viewOnGitHub': 'View on GitHub',
+  'app.project.website': 'Website',
+  'app.project.wiki': 'Wiki',
 
   // Skills
   'app.skills.subtitle': 'A generic subheading about tools and experience.',
