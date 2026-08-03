@@ -43,13 +43,7 @@ export const nl: Record<MessageKey, string> = {
 
   // Latest project
   'app.latest.badge': 'Nu in ontwikkeling',
-  'app.latest.tagline': 'Een generieke ondertitel over de huidige focus.',
-  'app.latest.body1':
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-  'app.latest.body2':
-    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
   'app.latest.cta': 'Bekijk op GitHub',
-  'app.latest.imageAlt': 'Voorbeeld van het Loom-project',
 
   // Q&A
   'app.qna.q1': 'Waarmee is deze website gebouwd?',
@@ -70,18 +64,26 @@ export const nl: Record<MessageKey, string> = {
 
   // Highlighted projects
   'app.highlights.subtitle': 'Een generieke ondertitel bij geselecteerd werk.',
-  'app.highlights.cardHint': 'Bekijk details',
-  'app.project.loom.summary':
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  'app.project.rpi.summary':
-    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  'app.project.web.summary':
-    'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-  'app.projectDialog.tabOverview': 'Overzicht',
-  'app.projectDialog.tabStack': 'Techniek',
-  'app.projectDialog.tabLinks': 'Links',
-  'app.projectDialog.stackIntro': 'Gebouwd met de volgende tools:',
-  'app.projectDialog.repo': 'GitHub-repository',
+
+  // Projects
+  'app.projects.subtitle': 'Alles wat ik in het openbaar bouw.',
+  'app.projects.featured': 'Uitgelicht',
+  'app.projects.everything': 'Alle projecten',
+  'app.project.archived': 'Gearchiveerd',
+  'app.project.version': 'Nieuwste versie',
+  'app.project.languages': 'Talen',
+  'app.project.story': 'Hoe dit is ontstaan',
+  'app.project.star': 'Hoogtepunten',
+  'app.project.situation': 'Situatie',
+  'app.project.task': 'Taak',
+  'app.project.action': 'Actie',
+  'app.project.result': 'Resultaat',
+  'app.project.relations': 'Gerelateerde projecten',
+  'app.project.uses': 'Gebruikt',
+  'app.project.usedBy': 'Gebruikt door',
+  'app.project.viewOnGitHub': 'Bekijk op GitHub',
+  'app.project.website': 'Website',
+  'app.project.wiki': 'Wiki',
 
   // Skills
   'app.skills.subtitle': 'Een generieke ondertitel over tools en ervaring.',

@@ -17,6 +17,87 @@ To build this application for production:
 pnpm run build
 ```
 
+## Adding a project
+
+Project pages are generated at build time from a `.dylan/` directory in each public
+repo. A repo without one is never listed, so this is also the opt-in.
+
+```
+.dylan/
+  meta.toml            # required — everything below is optional
+  description.md       # falls back to the GitHub repo description
+  description.nl.md
+  story.md
+  story.nl.md
+  banner.png           # falls back to GitHub's social preview
+  star/
+    1-something.md     # one STAR entry per file, ordered by filename
+    1-something.nl.md
+```
+
+```toml
+featured = true
+weight   = 10                    # lower sorts first; unset sorts as 1000
+
+[[release.packages]]             # only when actually published
+registry = "nuget"               # nuget | maven
+id       = "Loom.Results"        # maven uses "group:artifact"
+
+[[links]]
+url      = "https://example.com/docs"
+label    = "Documentation"
+label_nl = "Documentatie"
+
+[[uses]]                         # "used by" is derived; never declare the reverse
+repo = "Loom"
+note = "Result types"
+```
+
+Each STAR entry is its own markdown file in `.dylan/star/`, so it can be written like
+prose and translated per file. The `##` headings are machine keys and stay English in
+every locale — the labels the page renders come from the site's message catalogs.
+
+```md
+# Cutting allocation overhead
+
+## situation
+Hot paths allocated on every call…
+
+## task
+…
+
+## action
+…
+
+## result
+…
+```
+
+The version comes from the newest semver git tag. Unknown keys, wrong types, and STAR
+files with a missing or misspelt section fail the build rather than silently doing
+nothing.
+
+Then add this workflow to the project repo so the site rebuilds when you release or
+edit the page. `VERCEL_DEPLOY_HOOK` is the hook URL from Vercel → Settings → Git.
+
+```yaml
+name: Update portfolio
+on:
+  push:
+    tags: ['v*']
+    branches: [main]
+    paths: ['.dylan/**']
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+```
+
+Locally, `pnpm run build:projects` refreshes the data and `pnpm run check:projects`
+runs the pipeline checks. Set `GITHUB_TOKEN` to avoid the 60-request/hour
+unauthenticated limit.
+
 ## Styling
 
 This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
