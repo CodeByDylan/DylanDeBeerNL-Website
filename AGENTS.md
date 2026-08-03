@@ -127,6 +127,21 @@ MORE CLI:
   upgrade --apply    run after any @astryxdesign/core bump
 <!-- ASTRYX:END -->
 
+## Astryx Tailwind bridge
+`tailwind-theme.css` maps Astryx tokens onto Tailwind's *standard* scales. Use the
+standard class name, not the token name — `rounded-container` and friends do not exist.
+- radius: `rounded-xs`/`rounded-sm` → inner, `rounded-md` → element, `rounded-lg` → container, `rounded-xl` → page
+- color: `text-primary`, `text-secondary`, `text-accent`, `bg-surface`, `bg-body`, `bg-accent-bg`, `bg-accent-muted`
+- text size: `text-2xs` … `text-5xl`
+Tailwind only compiles classes it finds literally in source, so a utility that emits no
+CSS is almost always a wrong class name rather than a broken bridge. Check the generated
+CSS before concluding otherwise. For a token with no bridge key, use `rounded-[var(--radius-…)]`.
+
+## Images
+Astryx has no Image component. Frame media in `AspectRatio` (`fit="cover"` for photos,
+`contain` for logos) and put a bare `<img>` inside; do not set width/height/object-fit on
+the child. Radius and borders belong on the AspectRatio, with `overflow-hidden` to clip.
+
 ## Code comments
 - Comment the code, not your thoughts. No reasoning narratives, no alternatives considered, no bug history, no tutorials.
 - Default to no comment. Add one only for what the code cannot say: a non-obvious constraint, invariant, or workaround.
