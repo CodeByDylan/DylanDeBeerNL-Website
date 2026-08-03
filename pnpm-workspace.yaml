@@ -1,3 +1,8 @@
+# Postinstall scripts only print a setup nudge; init already ran.
+allowBuilds:
+  '@astryxdesign/cli': false
+  '@astryxdesign/core': false
+
 onlyBuiltDependencies:
   - esbuild
   - lightningcss
