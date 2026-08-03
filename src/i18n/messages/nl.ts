@@ -107,18 +107,47 @@ export const nl: Record<MessageKey, string> = {
 
   // Cookie statement
   'app.cookies.title': 'Cookieverklaring',
-  'app.cookies.updated': 'Laatst bijgewerkt: januari 2026',
+  'app.cookies.updated': 'Laatst bijgewerkt: augustus 2026',
   'app.cookies.intro':
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  'app.cookies.what.title': 'Wat zijn cookies?',
-  'app.cookies.what.body':
-    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
-  'app.cookies.use.title': 'Hoe deze site ze gebruikt',
-  'app.cookies.use.body':
-    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
-  'app.cookies.manage.title': 'Je voorkeuren beheren',
-  'app.cookies.manage.body':
-    'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
+    'Kort gezegd: deze website plaatst geen cookies, toont geen advertenties en volgt je niet over andere websites. Er wordt niets op je apparaat opgeslagen totdat je zelf een instelling wijzigt.',
+
+  'app.cookies.none.title': 'Gebruikt deze site cookies?',
+  'app.cookies.none.body':
+    'Nee — geen eigen cookies en geen cookies van derden. Een pagina openen slaat niets op je apparaat op.',
+
+  'app.cookies.stored.title': 'Wat deze site op je apparaat opslaat',
+  'app.cookies.stored.body':
+    'Eén item, en alleen zodra je zelf van taal wisselt. Je keuze blijft in je browser bewaard, zodat de site bij je volgende bezoek in die taal staat.',
+  'app.cookies.stored.nameLabel': 'Naam',
+  'app.cookies.stored.nameValue': 'locale (lokale opslag in je browser, geen cookie)',
+  'app.cookies.stored.purposeLabel': 'Doel',
+  'app.cookies.stored.purposeValue': 'Onthoudt de taal die je hebt gekozen',
+  'app.cookies.stored.contentLabel': 'Inhoud',
+  'app.cookies.stored.contentValue': 'Alleen "en" of "nl"',
+  'app.cookies.stored.retentionLabel': 'Bewaard tot',
+  'app.cookies.stored.retentionValue': 'Je de gegevens van deze site in je browser wist',
+  'app.cookies.stored.sentLabel': 'Naar een server verstuurd?',
+  'app.cookies.stored.sentValue': 'Nee, het blijft in je browser',
+
+  'app.cookies.analytics.title': 'Bezoekersstatistieken',
+  'app.cookies.analytics.body':
+    'Bezoeken worden geteld met Vercel Web Analytics. Dat werkt zonder cookies en slaat niets op je apparaat op. Er worden geaggregeerde gegevens vastgelegd, zoals de bekeken pagina, de site waar je vandaan kwam, de globale locatie (land en regio), browser en apparaattype. Terugkerend bezoek wordt maximaal 24 uur herkend via een waarde die uit het verzoek zelf wordt afgeleid en daarna niet wordt bewaard. Deze statistieken kunnen jou niet identificeren en worden niet gebruikt voor advertenties of profilering.',
+
+  'app.cookies.consent.title': 'Waarom er geen cookiebanner is',
+  'app.cookies.consent.body':
+    'Europese en Nederlandse regels vereisen toestemming voordat er informatie op je apparaat wordt opgeslagen of uitgelezen, tenzij dat strikt noodzakelijk is voor iets wat je zelf hebt gevraagd. De taalvoorkeur wordt alleen bewaard omdat jij die hebt gekozen, en de bezoekersstatistieken slaan helemaal niets op je apparaat op. Voor geen van beide is jouw toestemming nodig, dus een cookiebanner zou je om instemming met niets vragen.',
+
+  'app.cookies.control.title': 'Jouw keuzes',
+  'app.cookies.control.body':
+    'Je kunt de bewaarde taalvoorkeur altijd verwijderen door de gegevens van deze site in je browserinstellingen te wissen. De site blijft gewoon werken en valt terug op Engels. Opslag voor deze site volledig blokkeren kan ook — je verliest dan alleen de onthouden taal.',
+
+  'app.cookies.changes.title': 'Als dit verandert',
+  'app.cookies.changes.body':
+    'Mocht deze site ooit cookies of tracking gaan gebruiken, dan wordt deze pagina eerst bijgewerkt en wordt toestemming gevraagd waar de wet dat vereist.',
+
+  'app.cookies.contact.title': 'Vragen',
+  'app.cookies.contact.body':
+    'Is iets hier onduidelijk, of wil je weten wat er over je bezoek is vastgelegd? Neem contact op:',
 
   // Not found & error pages
   'app.notFound.title': 'Pagina niet gevonden',
