@@ -9,6 +9,8 @@ import { nitro } from 'nitro/vite'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
+  // Bundle the workspace theme into the SSR build instead of resolving the symlink at runtime.
+  ssr: { noExternal: ['@dylandebeer/theme-pastel'] },
   plugins: [
     devtools(),
     nitro({ rollupConfig: { external: [/^@sentry\//] } }),

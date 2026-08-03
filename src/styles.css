@@ -1,2 +1,10 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
+/* Astryx + Tailwind v4 bridge. Layer order is load-bearing. */
+@layer reset, theme, base, astryx-base, astryx-theme, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "@astryxdesign/core/reset.css";
+@import "@astryxdesign/core/astryx.css";
+@import "@dylandebeer/theme-pastel/theme.css";
+@import "@astryxdesign/core/tailwind-theme.css";
+@import "tailwindcss/utilities.css" layer(utilities);

@@ -1,6 +1,9 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { Theme } from '@astryxdesign/core/theme'
+// /built pairs with the prebuilt theme.css imported in styles.css.
+import { pastelTheme } from '@dylandebeer/theme-pastel/built'
 
 import appCss from '../styles.css?url'
 
@@ -35,7 +38,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased">
-        {children}
+        <Theme theme={pastelTheme} mode="system">
+          {children}
+        </Theme>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
