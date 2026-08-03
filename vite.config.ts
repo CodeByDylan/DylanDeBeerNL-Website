@@ -6,6 +6,12 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { nitro } from 'nitro/vite'
+import projects from './src/data/projects.generated.json' with { type: 'json' }
+
+// Written by `build:projects`, which always runs before vite.
+const projectPages = (projects as Array<{ slug: string }>).map((project) => ({
+  path: `/projects/${project.slug}`,
+}))
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
@@ -15,7 +21,10 @@ const config = defineConfig({
     devtools(),
     nitro({ rollupConfig: { external: [/^@sentry\//] } }),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      prerender: { enabled: true, crawlLinks: true, failOnError: true },
+      pages: projectPages,
+    }),
     viteReact(),
   ],
 })

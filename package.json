@@ -8,13 +8,15 @@
   },
   "scripts": {
     "build:theme": "pnpm --filter @dylandebeer/theme-pastel build",
-    "dev": "pnpm run build:theme && vite dev --port 3000",
+    "dev": "pnpm run build:theme && pnpm run build:projects && vite dev --port 3000",
     "generate-routes": "tsr generate",
-    "build": "pnpm run build:theme && vite build",
+    "build": "pnpm run build:theme && pnpm run build:projects && vite build",
     "preview": "vite preview",
     "format": "biome format",
     "lint": "biome lint",
-    "check": "biome check"
+    "check": "biome check",
+    "build:projects": "node --experimental-strip-types scripts/build-projects.mjs",
+    "check:projects": "node --experimental-strip-types scripts/__checks__/verify-projects.mts && node --experimental-strip-types scripts/__checks__/verify-pipeline.mts"
   },
   "dependencies": {
     "@astryxdesign/core": "catalog:",
@@ -44,6 +46,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
+    "smol-toml": "^1.7.1",
     "typescript": "catalog:",
     "vite": "^8.0.0"
   }
