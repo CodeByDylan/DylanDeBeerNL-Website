@@ -1,0 +1,47 @@
+name: Sync release PR
+
+on:
+  push:
+    branches: [development]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: sync-release-pr
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Refresh commit list in the development -> main PR body
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          number=$(gh pr list --base main --head development --state open \
+            --json number --jq '.[0].number // empty')
+          if [ -z "$number" ]; then
+            echo "No open development -> main PR; nothing to sync."
+            exit 0
+          fi
+
+          git fetch --no-tags origin main
+          git log --no-merges --pretty='- %s' origin/main..HEAD > /tmp/commits.txt
+          gh pr view "$number" --json body --jq .body > /tmp/body.md
+
+          node .github/scripts/sync-pr-body.mjs /tmp/body.md /tmp/commits.txt > /tmp/new-body.md
+
+          if diff -q /tmp/body.md /tmp/new-body.md >/dev/null; then
+            echo "PR #$number already current."
+          else
+            gh pr edit "$number" --body-file /tmp/new-body.md
+            echo "PR #$number synced."
+          fi
