@@ -8,6 +8,7 @@ import AppLayout from '../components/AppLayout'
 import { I18nProvider } from '../i18n'
 
 import appCss from '../styles.css?url'
+import {Analytics} from "@vercel/analytics/react";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -36,6 +37,7 @@ export const Route = createRootRoute({
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <Analytics debug={false}/>
       <head>
         <HeadContent />
       </head>
