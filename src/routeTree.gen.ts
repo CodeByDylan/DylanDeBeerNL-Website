@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as ProjectsLoomRouteImport } from './routes/projects/Loom'
+import { Route as ProjectsResourcePackIdentifierRouteImport } from './routes/projects/ResourcePackIdentifier'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +25,75 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsLoomRoute = ProjectsLoomRouteImport.update({
+  id: '/projects/Loom',
+  path: '/projects/Loom',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsResourcePackIdentifierRoute =
+  ProjectsResourcePackIdentifierRouteImport.update({
+    id: '/projects/ResourcePackIdentifier',
+    path: '/projects/ResourcePackIdentifier',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/projects/Loom': typeof ProjectsLoomRoute
+  '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/projects/Loom': typeof ProjectsLoomRoute
+  '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/projects/Loom': typeof ProjectsLoomRoute
+  '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/projects/Loom'
+    | '/projects/ResourcePackIdentifier'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/projects/Loom'
+    | '/projects/ResourcePackIdentifier'
+    | '/projects'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/projects/Loom'
+    | '/projects/ResourcePackIdentifier'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ProjectsLoomRoute: typeof ProjectsLoomRoute
+  ProjectsResourcePackIdentifierRoute: typeof ProjectsResourcePackIdentifierRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +112,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/Loom': {
+      id: '/projects/Loom'
+      path: '/projects/Loom'
+      fullPath: '/projects/Loom'
+      preLoaderRoute: typeof ProjectsLoomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/ResourcePackIdentifier': {
+      id: '/projects/ResourcePackIdentifier'
+      path: '/projects/ResourcePackIdentifier'
+      fullPath: '/projects/ResourcePackIdentifier'
+      preLoaderRoute: typeof ProjectsResourcePackIdentifierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ProjectsLoomRoute: ProjectsLoomRoute,
+  ProjectsResourcePackIdentifierRoute: ProjectsResourcePackIdentifierRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

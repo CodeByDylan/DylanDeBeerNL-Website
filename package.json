@@ -19,6 +19,7 @@
   "dependencies": {
     "@astryxdesign/core": "catalog:",
     "@dylandebeer/theme-pastel": "workspace:*",
+    "@heroicons/react": "^2.2.0",
     "@t3-oss/env-core": "^0.13.10",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",
