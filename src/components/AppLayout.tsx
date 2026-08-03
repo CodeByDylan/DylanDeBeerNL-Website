@@ -14,6 +14,8 @@ import {
   HomeIcon,
   UserIcon,
 } from '@heroicons/react/16/solid'
+import { useTranslate } from '../i18n'
+import LanguageToggle from './LanguageToggle'
 import RouterLink from './RouterLink'
 
 // Proper nouns; not translated.
@@ -41,6 +43,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   })
+  const t = useTranslate()
 
   return (
     <LinkProvider component={RouterLink}>
@@ -52,32 +55,33 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <Banner
             status="info"
             container="section"
-            title="This site is a work in progress"
-            description="Projects and write-ups are still being added."
+            title={t('app.banner.title')}
+            description={t('app.banner.description')}
             isDismissable
           />
         }
         topNav={
           <TopNav
-            label="Main navigation"
+            label={t('app.nav.mainLabel')}
             heading={
               <TopNavHeading
-                heading="Dylan de Beer"
-                subheading="also known as DutchyD"
+                heading={t('app.brand.name')}
+                subheading={t('app.brand.tagline')}
                 logo={<NavIcon icon={<Icon icon={CodeBracketIcon} size="sm" />} />}
               />
             }
+            endContent={<LanguageToggle />}
             startContent={
               <>
                 {/* Icon supplies sizing; bare heroicons have no intrinsic size. */}
                 <TopNavItem
-                  label="Home"
+                  label={t('app.nav.home')}
                   href="/"
                   icon={<Icon icon={HomeIcon} size="sm" />}
                   isSelected={pathname === '/'}
                 />
                 <TopNavItem
-                  label="About Me"
+                  label={t('app.nav.about')}
                   href="/about"
                   icon={<Icon icon={UserIcon} size="sm" />}
                   isSelected={pathname === '/about'}
@@ -88,15 +92,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         }
         sideNav={
           <SideNav>
-            <SideNavSection title="Overview" isHeaderHidden>
+            <SideNavSection title={t('app.nav.overviewSection')} isHeaderHidden>
               <SideNavItem
-                label="All Projects"
+                label={t('app.nav.allProjects')}
                 href="/projects"
                 icon={CubeIcon}
                 isSelected={pathname === '/projects'}
               />
             </SideNavSection>
-            <SideNavSection title="Projects">
+            <SideNavSection title={t('app.nav.projectsSection')}>
               {PROJECTS.map((project) => (
                 <SideNavItem
                   key={project.href}

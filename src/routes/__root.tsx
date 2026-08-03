@@ -5,6 +5,7 @@ import { Theme } from '@astryxdesign/core/theme'
 // /built pairs with the prebuilt theme.css imported in styles.css.
 import { pastelTheme } from '@dylandebeer/theme-pastel/built'
 import AppLayout from '../components/AppLayout'
+import { I18nProvider } from '../i18n'
 
 import appCss from '../styles.css?url'
 
@@ -39,9 +40,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased">
-        <Theme theme={pastelTheme} mode="system">
-          <AppLayout>{children}</AppLayout>
-        </Theme>
+        <I18nProvider>
+          <Theme theme={pastelTheme} mode="system">
+            <AppLayout>{children}</AppLayout>
+          </Theme>
+        </I18nProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
