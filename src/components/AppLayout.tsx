@@ -17,6 +17,7 @@ import {
 import { useTranslate } from '../i18n'
 import LanguageToggle from './LanguageToggle'
 import RouterLink from './RouterLink'
+import SiteFooter from './SiteFooter'
 
 // Proper nouns; not translated.
 const PROJECTS = [
@@ -116,6 +117,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       >
         <CloseMobileNavOnNavigate pathname={pathname} />
         {children}
+        <SiteFooter />
       </AppShell>
     </LinkProvider>
   )

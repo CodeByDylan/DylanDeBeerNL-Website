@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsLoomRouteImport } from './routes/projects/Loom'
 import { Route as ProjectsResourcePackIdentifierRouteImport } from './routes/projects/ResourcePackIdentifier'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
@@ -45,6 +51,7 @@ const ProjectsResourcePackIdentifierRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/cookies': typeof CookiesRoute
   '/projects/Loom': typeof ProjectsLoomRoute
   '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -52,6 +59,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/cookies': typeof CookiesRoute
   '/projects/Loom': typeof ProjectsLoomRoute
   '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
   '/projects': typeof ProjectsIndexRoute
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/cookies': typeof CookiesRoute
   '/projects/Loom': typeof ProjectsLoomRoute
   '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -69,6 +78,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/cookies'
     | '/projects/Loom'
     | '/projects/ResourcePackIdentifier'
     | '/projects/'
@@ -76,6 +86,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/cookies'
     | '/projects/Loom'
     | '/projects/ResourcePackIdentifier'
     | '/projects'
@@ -83,6 +94,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/cookies'
     | '/projects/Loom'
     | '/projects/ResourcePackIdentifier'
     | '/projects/'
@@ -91,6 +103,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CookiesRoute: typeof CookiesRoute
   ProjectsLoomRoute: typeof ProjectsLoomRoute
   ProjectsResourcePackIdentifierRoute: typeof ProjectsResourcePackIdentifierRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -110,6 +123,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/': {
@@ -139,6 +159,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CookiesRoute: CookiesRoute,
   ProjectsLoomRoute: ProjectsLoomRoute,
   ProjectsResourcePackIdentifierRoute: ProjectsResourcePackIdentifierRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,

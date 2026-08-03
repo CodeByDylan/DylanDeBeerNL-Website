@@ -20,6 +20,10 @@ export const en = {
   'app.projects.allTitle': 'All Projects',
   'app.page.empty': 'Nothing here yet.',
 
+  // Shared actions
+  'app.action.back': 'Go back',
+  'app.action.home': 'Go home',
+
   // Section dividers
   'app.section.latestProject': 'Latest project',
   'app.section.highlights': 'Highlighted projects',
@@ -93,6 +97,34 @@ export const en = {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   'app.contact.email': 'Send an email',
   'app.contact.github': 'GitHub profile',
+
+  // Footer
+  'app.footer.tagline': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'app.footer.rights': '© {year} Dylan de Beer. All rights reserved.',
+  'app.footer.cookies': 'Cookie statement',
+
+  // Cookie statement
+  'app.cookies.title': 'Cookie statement',
+  'app.cookies.updated': 'Last updated: January 2026',
+  'app.cookies.intro':
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  'app.cookies.what.title': 'What are cookies?',
+  'app.cookies.what.body':
+    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+  'app.cookies.use.title': 'How this site uses them',
+  'app.cookies.use.body':
+    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
+  'app.cookies.manage.title': 'Managing your preferences',
+  'app.cookies.manage.body':
+    'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
+
+  // Not found & error pages
+  'app.notFound.title': 'Page not found',
+  'app.notFound.body':
+    'This page does not exist or has moved. Head back to where you came from, or start over at the homepage.',
+  'app.error.title': 'Something went wrong',
+  'app.error.body':
+    'An unexpected error occurred. Head back to where you came from, or start over at the homepage.',
 
   // Astryx strings surfaced by this app; omitted keys fall back to shipped English.
   '@astryx.banner.dismiss': 'Dismiss',

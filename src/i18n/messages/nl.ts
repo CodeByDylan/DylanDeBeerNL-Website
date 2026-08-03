@@ -22,6 +22,10 @@ export const nl: Record<MessageKey, string> = {
   'app.projects.allTitle': 'Alle projecten',
   'app.page.empty': 'Hier staat nog niets.',
 
+  // Shared actions
+  'app.action.back': 'Ga terug',
+  'app.action.home': 'Naar home',
+
   // Section dividers
   'app.section.latestProject': 'Nieuwste project',
   'app.section.highlights': 'Uitgelichte projecten',
@@ -95,6 +99,34 @@ export const nl: Record<MessageKey, string> = {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   'app.contact.email': 'Stuur een e-mail',
   'app.contact.github': 'GitHub-profiel',
+
+  // Footer
+  'app.footer.tagline': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'app.footer.rights': '© {year} Dylan de Beer. Alle rechten voorbehouden.',
+  'app.footer.cookies': 'Cookieverklaring',
+
+  // Cookie statement
+  'app.cookies.title': 'Cookieverklaring',
+  'app.cookies.updated': 'Laatst bijgewerkt: januari 2026',
+  'app.cookies.intro':
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  'app.cookies.what.title': 'Wat zijn cookies?',
+  'app.cookies.what.body':
+    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+  'app.cookies.use.title': 'Hoe deze site ze gebruikt',
+  'app.cookies.use.body':
+    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
+  'app.cookies.manage.title': 'Je voorkeuren beheren',
+  'app.cookies.manage.body':
+    'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
+
+  // Not found & error pages
+  'app.notFound.title': 'Pagina niet gevonden',
+  'app.notFound.body':
+    'Deze pagina bestaat niet of is verplaatst. Ga terug naar waar je vandaan kwam, of begin opnieuw op de homepagina.',
+  'app.error.title': 'Er ging iets mis',
+  'app.error.body':
+    'Er is een onverwachte fout opgetreden. Ga terug naar waar je vandaan kwam, of begin opnieuw op de homepagina.',
 
   '@astryx.banner.dismiss': 'Sluiten',
   '@astryx.dialog.close': 'Sluiten',
