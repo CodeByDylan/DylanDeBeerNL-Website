@@ -1,3 +1,4 @@
+import { AspectRatio } from '@astryxdesign/core/AspectRatio'
 import { Badge } from '@astryxdesign/core/Badge'
 import { Button } from '@astryxdesign/core/Button'
 import { Grid } from '@astryxdesign/core/Grid'
@@ -16,11 +17,13 @@ export default function LatestProjectSection() {
   return (
     <Section variant="muted" padding={8}>
       <Grid columns={{ minWidth: 340, max: 2 }} gap={8} align="center">
-        <img
-          src={LATEST_PROJECT.image}
-          alt={t('app.latest.imageAlt')}
-          className="w-full rounded-container border border-solid border-[var(--color-border)]"
-        />
+        <AspectRatio
+          ratio={LATEST_PROJECT.imageRatio}
+          fit="cover"
+          className="overflow-hidden rounded-lg border border-solid border-[var(--color-border)]"
+        >
+          <img src={LATEST_PROJECT.image} alt={t('app.latest.imageAlt')} />
+        </AspectRatio>
         <VStack gap={4} hAlign="start">
           <Badge variant="success" label={t('app.latest.badge')} />
           <Heading level={2} type="display-3">

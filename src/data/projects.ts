@@ -14,6 +14,8 @@ export const LATEST_PROJECT = {
   name: 'Loom',
   repoUrl: 'https://github.com/CodeByDylan/Loom',
   image: '/images/project-loom.svg',
+  /** Intrinsic ratio of the image (800x500); matches so cover never crops. */
+  imageRatio: 800 / 500,
   stack: ['TypeScript', 'React', 'TanStack Start'],
 } as const
 
