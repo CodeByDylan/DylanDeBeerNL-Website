@@ -6,7 +6,7 @@ import { Heading } from '@astryxdesign/core/Heading'
 import { HStack, VStack } from '@astryxdesign/core/Stack'
 import { Text } from '@astryxdesign/core/Text'
 import { LOGO_BLACK_SRC, LOGO_RATIO } from '../../data/brand'
-import { LATEST_PROJECT } from '../../data/projects'
+import { TOP_LANGUAGES } from '../../data/projects'
 import { useTranslate } from '../../i18n'
 
 export default function HeroSection() {
@@ -41,8 +41,8 @@ export default function HeroSection() {
         <Button variant="secondary" size="lg" label={t('app.hero.ctaContact')} href="#contact" />
       </HStack>
       <HStack gap={2} className="flex-wrap justify-center">
-        {LATEST_PROJECT.stack.map((tech) => (
-          <Badge key={tech} label={tech} />
+        {TOP_LANGUAGES.map((language) => (
+          <Badge key={language} label={language} />
         ))}
       </HStack>
     </VStack>

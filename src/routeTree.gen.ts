@@ -13,8 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
-import { Route as ProjectsLoomRouteImport } from './routes/projects/Loom'
-import { Route as ProjectsResourcePackIdentifierRouteImport } from './routes/projects/ResourcePackIdentifier'
+import { Route as ProjectsRepoRouteImport } from './routes/projects/$repo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -36,32 +35,24 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsLoomRoute = ProjectsLoomRouteImport.update({
-  id: '/projects/Loom',
-  path: '/projects/Loom',
+const ProjectsRepoRoute = ProjectsRepoRouteImport.update({
+  id: '/projects/$repo',
+  path: '/projects/$repo',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsResourcePackIdentifierRoute =
-  ProjectsResourcePackIdentifierRouteImport.update({
-    id: '/projects/ResourcePackIdentifier',
-    path: '/projects/ResourcePackIdentifier',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
-  '/projects/Loom': typeof ProjectsLoomRoute
-  '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
+  '/projects/$repo': typeof ProjectsRepoRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
-  '/projects/Loom': typeof ProjectsLoomRoute
-  '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
+  '/projects/$repo': typeof ProjectsRepoRoute
   '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
@@ -69,43 +60,23 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
-  '/projects/Loom': typeof ProjectsLoomRoute
-  '/projects/ResourcePackIdentifier': typeof ProjectsResourcePackIdentifierRoute
+  '/projects/$repo': typeof ProjectsRepoRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/cookies'
-    | '/projects/Loom'
-    | '/projects/ResourcePackIdentifier'
-    | '/projects/'
+  fullPaths: '/' | '/about' | '/cookies' | '/projects/$repo' | '/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/cookies'
-    | '/projects/Loom'
-    | '/projects/ResourcePackIdentifier'
-    | '/projects'
+  to: '/' | '/about' | '/cookies' | '/projects/$repo' | '/projects'
   id:
-    | '__root__'
-    | '/'
-    | '/about'
-    | '/cookies'
-    | '/projects/Loom'
-    | '/projects/ResourcePackIdentifier'
-    | '/projects/'
+    '__root__' | '/' | '/about' | '/cookies' | '/projects/$repo' | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CookiesRoute: typeof CookiesRoute
-  ProjectsLoomRoute: typeof ProjectsLoomRoute
-  ProjectsResourcePackIdentifierRoute: typeof ProjectsResourcePackIdentifierRoute
+  ProjectsRepoRoute: typeof ProjectsRepoRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
@@ -139,18 +110,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/Loom': {
-      id: '/projects/Loom'
-      path: '/projects/Loom'
-      fullPath: '/projects/Loom'
-      preLoaderRoute: typeof ProjectsLoomRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/ResourcePackIdentifier': {
-      id: '/projects/ResourcePackIdentifier'
-      path: '/projects/ResourcePackIdentifier'
-      fullPath: '/projects/ResourcePackIdentifier'
-      preLoaderRoute: typeof ProjectsResourcePackIdentifierRouteImport
+    '/projects/$repo': {
+      id: '/projects/$repo'
+      path: '/projects/$repo'
+      fullPath: '/projects/$repo'
+      preLoaderRoute: typeof ProjectsRepoRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -160,8 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CookiesRoute: CookiesRoute,
-  ProjectsLoomRoute: ProjectsLoomRoute,
-  ProjectsResourcePackIdentifierRoute: ProjectsResourcePackIdentifierRoute,
+  ProjectsRepoRoute: ProjectsRepoRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
