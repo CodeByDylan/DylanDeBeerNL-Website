@@ -1,138 +1,79 @@
 import { z } from 'zod'
 
-/** Sorts after any explicitly weighted project. */
-export const UNSET_WEIGHT = 1000
-
-const localisedLabel = z.object({
-  url: z.url(),
-  label: z.string().min(1),
-  label_nl: z.string().min(1).optional(),
+/**
+ * The shape of `GET /v1/projects`.
+ *
+ * Thin on purpose. The API owns the rules — which registries exist, that a URL is a URL, that a
+ * `.dylan` file is well formed — and re-implementing any of them here is how two copies of a rule
+ * start disagreeing. This exists to catch a contract break, not to re-validate content.
+ *
+ * Objects are non-strict, so a field the API adds is dropped rather than failing the build. Only a
+ * field that *disappears* or changes type is a break worth stopping for.
+ */
+const starEntrySchema = z.object({
+  title: z.string(),
+  situation: z.string(),
+  task: z.string(),
+  action: z.string(),
+  result: z.string(),
 })
 
-/** Shape of `.dylan/meta.toml`. Unknown keys are rejected so typos surface as build errors. */
-export const metaSchema = z
-  .object({
-    featured: z.boolean().default(false),
-    weight: z.number().int().min(0).default(UNSET_WEIGHT),
-    release: z
-      .object({
-        packages: z
-          .array(
-            z.object({
-              registry: z.enum(['nuget', 'maven']),
-              id: z.string().min(1),
-            }),
-          )
-          .default([]),
-      })
-      .strict()
-      .default({ packages: [] }),
-    links: z.array(localisedLabel.strict()).default([]),
-    uses: z
-      .array(z.object({ repo: z.string().min(1), note: z.string().optional() }).strict())
-      .default([]),
-  })
-  .strict()
+const apiProjectSchema = z.object({
+  slug: z.string(),
+  name: z.string(),
+  url: z.url(),
+  createdAt: z.string(),
+  archived: z.boolean(),
+  featured: z.boolean(),
+  weight: z.number(),
+  description: z.string(),
+  descriptionNl: z.string().optional(),
+  story: z.string().optional(),
+  storyNl: z.string().optional(),
+  /** Where the banner can be fetched from. The build downloads it; the site never embeds it. */
+  bannerUrl: z.url().optional(),
+  bannerIsFallback: z.boolean(),
+  version: z.string().optional(),
+  homepage: z.url().optional(),
+  wiki: z.url().optional(),
+  packages: z.array(
+    z.object({
+      registry: z.enum(['nuget', 'maven']),
+      id: z.string(),
+      version: z.string().optional(),
+    }),
+  ),
+  languages: z.array(z.object({ name: z.string(), percent: z.number() })),
+  links: z.array(
+    z.object({ url: z.url(), label: z.string(), labelNl: z.string().optional() }),
+  ),
+  uses: z.array(
+    z.object({ repo: z.string(), note: z.string().optional(), slug: z.string().optional() }),
+  ),
+  usedBy: z.array(
+    z.object({ repo: z.string(), note: z.string().optional(), slug: z.string().optional() }),
+  ),
+  star: z.array(starEntrySchema.extend({ nl: starEntrySchema.optional() })),
+})
 
-export const STAR_FIELDS = ['situation', 'task', 'action', 'result'] as const
-export type StarField = (typeof STAR_FIELDS)[number]
+export const projectsResponseSchema = z.object({
+  projects: z.array(apiProjectSchema),
+  refreshedAt: z.string(),
+  /** True when the API's last refresh failed and it is answering from an older snapshot. */
+  stale: z.boolean(),
+})
 
-export type StarEntry = { title: string } & Record<StarField, string>
+export type ApiProject = z.infer<typeof apiProjectSchema>
+
+export type StarEntry = z.infer<typeof starEntrySchema>
+export type ProjectLanguage = ApiProject['languages'][number]
+export type ProjectRelation = ApiProject['uses'][number]
+export type ProjectPackage = ApiProject['packages'][number]
 
 /**
- * Parses `.dylan/star/*.md`: `# title`, then one `## <field>` per STAR field.
- * The headings are machine keys and stay English in every locale — the labels
- * the page renders come from the message catalogs.
+ * A project as this site holds it: the API's payload with the banner downloaded.
+ *
+ * `bannerUrl` deliberately does not survive the build. Its fallback is GitHub's undocumented
+ * social-preview host, and embedding that would have GitHub serve an image on every page view.
  */
-export function parseStarFile(markdown: string, source: string): StarEntry {
-  const title = /^#\s+(.+?)\s*$/m.exec(markdown)?.[1]
-  if (!title) throw new Error(`${source} — missing the "# title" heading`)
-
-  const sections = new Map<string, string>()
-  const pattern = /^##\s+([a-z]+)\s*$/gm
-  const matches = [...markdown.matchAll(pattern)]
-
-  for (const [index, match] of matches.entries()) {
-    const start = match.index + match[0].length
-    const end = index + 1 < matches.length ? matches[index + 1].index : markdown.length
-    sections.set(match[1], markdown.slice(start, end).trim())
-  }
-
-  const missing = STAR_FIELDS.filter((field) => !sections.get(field))
-  if (missing.length > 0) {
-    throw new Error(`${source} — missing or empty section(s): ${missing.join(', ')}`)
-  }
-
-  const unknown = [...sections.keys()].filter(
-    (key) => !STAR_FIELDS.includes(key as StarField),
-  )
-  if (unknown.length > 0) {
-    throw new Error(`${source} — unknown section(s): ${unknown.join(', ')}`)
-  }
-
-  return {
-    title,
-    situation: sections.get('situation') as string,
-    task: sections.get('task') as string,
-    action: sections.get('action') as string,
-    result: sections.get('result') as string,
-  }
-}
-
-export type ProjectMeta = z.infer<typeof metaSchema>
-
-export type ProjectLanguage = { name: string; percent: number }
-export type ProjectRelation = { repo: string; note?: string; slug?: string }
-export type ProjectPackage = { registry: 'nuget' | 'maven'; id: string; version?: string }
-
-export type Project = {
-  slug: string
-  name: string
-  url: string
-  createdAt: string
-  archived: boolean
-  featured: boolean
-  weight: number
-  description: string
-  descriptionNl?: string
-  story?: string
-  storyNl?: string
-  banner?: string
-  bannerIsFallback: boolean
-  version?: string
-  packages: ProjectPackage[]
-  languages: ProjectLanguage[]
-  homepage?: string
-  wiki?: string
-  links: Array<{ url: string; label: string; labelNl?: string }>
-  uses: ProjectRelation[]
-  usedBy: ProjectRelation[]
-  star: Array<StarEntry & { nl?: StarEntry }>
-}
-
-/** Weight ascending, then newest first. */
-export function compareProjects(
-  a: Pick<Project, 'weight' | 'createdAt'>,
-  b: Pick<Project, 'weight' | 'createdAt'>,
-): number {
-  if (a.weight !== b.weight) return a.weight - b.weight
-  return b.createdAt.localeCompare(a.createdAt)
-}
-
-export const slugify = (name: string): string =>
-  name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-
-/** GitHub returns tags in commit order, so a late-pushed old tag would otherwise win. */
-export function latestTag(tags: Array<{ name: string }>): string | undefined {
-  const semver = tags
-    .map((tag) => ({ name: tag.name, match: /^v?(\d+)\.(\d+)\.(\d+)/.exec(tag.name) }))
-    .filter((tag) => tag.match !== null)
-    .map((tag) => ({ name: tag.name, key: (tag.match as RegExpExecArray).slice(1, 4).map(Number) }))
-
-  if (semver.length === 0) return tags[0]?.name
-  semver.sort((a, b) => b.key[0] - a.key[0] || b.key[1] - a.key[1] || b.key[2] - a.key[2])
-  return semver[0].name
-}
+export type Project = Omit<ApiProject, 'bannerUrl'> & { banner?: string }
