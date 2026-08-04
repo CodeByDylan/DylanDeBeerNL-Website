@@ -94,9 +94,26 @@ jobs:
       - run: curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
 ```
 
+The data itself comes from
+[dylandebeer-api](https://github.com/CodeByDylan/dylandebeer-api), which does the reading,
+parsing and version resolution. This site fetches one document and downloads the banners;
+it derives nothing, so it cannot disagree with the other consumers about ordering or about
+what a `.dylan` file means.
+
+Two environment variables, both needed by the build:
+
+| Variable | | |
+| --- | --- | --- |
+| `PROJECTS_API_URL` | required | e.g. `https://api.dylandebeer.nl` |
+| `PROJECTS_REFRESH_SECRET` | optional | forces the API to reassemble before answering |
+
+Without the secret the build publishes whatever the API last assembled, which may be up to
+its cache TTL old — the wait a deploy hook exists to end. An unreachable API, a non-200 or a
+response that does not match the expected shape fails the build rather than shipping a site
+with no projects on it.
+
 Locally, `pnpm run build:projects` refreshes the data and `pnpm run check:projects`
-runs the pipeline checks. Set `GITHUB_TOKEN` to avoid the 60-request/hour
-unauthenticated limit.
+runs the pipeline checks.
 
 ## Styling
 
